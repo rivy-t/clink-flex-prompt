@@ -2793,7 +2793,8 @@ function flexprompt.get_git_branch(git_dir)
     if branch_name then
         return branch_name
     else
-        return 'HEAD detached at '..HEAD:sub(1, 7), true, HEAD
+        local hash_size = flexprompt.settings.git_commit_hash_size or flexprompt.settings.scm_commit_hash_size or 8
+        return HEAD:sub(1, hash_size), true
     end
 end
 

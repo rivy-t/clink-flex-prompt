@@ -651,7 +651,7 @@ local function process_cwd_string(cwd, git_wks, args)
                 local rootcolor = flexprompt.parse_arg_token(args, "rc", "rootcolor")
                 local parent = cwd:sub(1, #cwd - #smart_dir)
                 if shorten and (type(shorten) ~= "number" or console.cellcount(cwd) > shorten) then
-                    parent = abbreviate_parents(parent, true--[[all]])
+                    parent = abbreviate_parents(parent, true--[[all]]) .. "\\"
                     if shorten ~= "smartroot" and shorten ~= "rootsmart" then
                         smart_dir = abbreviate_parents(smart_dir)
                     end

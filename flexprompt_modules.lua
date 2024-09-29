@@ -275,6 +275,7 @@ local function render_anyconnect(args)
         -- Get connection status.
         info, refreshing = flexprompt.prompt_info(anyconnect_cached_info, nil, nil, collect_anyconnect_info)
     end
+    info = info or {}
 
     -- Decide on the colors based on the VPN connection state and proxy env vars
     -- One bad state env variable results in yellow, both result in red
@@ -1745,6 +1746,7 @@ local function render_scm(args)
         info, refreshing = flexprompt.prompt_info(cached_scm, detected.root, detected.branch, function ()
             return collect_scm_info(detected, flags)
         end)
+        info = info or {}
 
         -- Fill in initial values from detect_scm() until the prompt_info()
         -- coroutine completes.

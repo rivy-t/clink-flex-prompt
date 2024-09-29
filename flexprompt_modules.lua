@@ -1760,8 +1760,9 @@ local function render_scm(args)
         branch = info.branch
         detached = info.detached
         if detached and info.commit then
+            local format_string = flexprompt.settings.scm_commit_format or "%s"
             local hash_size = flexprompt.settings.scm_commit_hash_size or 8
-            branch = info.commit:sub(1, hash_size)
+            branch = string.format(format_string, info.commit:sub(1, hash_size))
         end
 
         if flexprompt_git and type(flexprompt_git.postprocess_branch) == "function" then

@@ -2793,8 +2793,9 @@ function flexprompt.get_git_branch(git_dir)
     if branch_name then
         return branch_name
     else
+        local format_string = flexprompt.settings.git_commit_format or flexprompt.settings.scm_commit_format or "%s"
         local hash_size = flexprompt.settings.git_commit_hash_size or flexprompt.settings.scm_commit_hash_size or 8
-        return HEAD:sub(1, hash_size), true
+        return string.format(format_string, HEAD:sub(1, hash_size)), true
     end
 end
 

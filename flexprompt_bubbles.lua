@@ -847,7 +847,8 @@ local function render_lbubble(args, shorten) -- luacheck: no unused
 
             local branch
             if info.detached then
-                branch = info.commit:sub(1, 8)
+                local hash_size = flexprompt.settings.git_commit_hash_size or flexprompt.settings.scm_commit_hash_size or 8
+                branch = info.commit:sub(1, hash_size)
                 if info.detached_refname then
                     branch = string.format("%s (%s)", branch, info.detached_refname)
                 end

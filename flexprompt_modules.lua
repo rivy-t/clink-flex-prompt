@@ -1963,8 +1963,9 @@ local function render_scm(args)
         branch = info.branch
         detached = info.detached
         if detached and info.commit then
+            local format_string = flexprompt.settings.git_commit_format or flexprompt.settings.scm_commit_format or "%s"
             local hash_size = flexprompt.settings.git_commit_hash_size or flexprompt.settings.scm_commit_hash_size or 8
-            branch = info.commit:sub(1, hash_size)
+            branch = string.format(format_string, info.commit:sub(1, hash_size))
             if info.detached_refname then
                 branch = string.format("%s (%s)", branch, info.detached_refname)
             end
